@@ -26,19 +26,19 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get(
-    'SECRET_KEY', '')
+SECRET_KEY = env('SECRET_KEY', default=os.environ.get('SECRET_KEY', ''))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = development
+
 if development:
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS=[]
 else:
-    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
+    ALLOWED_HOSTS=[os.environ.get('HEROKU_HOSTNAME')]
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS=[
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'todo',
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE=[
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -58,9 +58,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'django_todo.urls'
+ROOT_URLCONF='django_todo.urls'
 
-TEMPLATES = [
+TEMPLATES=[
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
@@ -76,21 +76,21 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'django_todo.wsgi.application'
+WSGI_APPLICATION='django_todo.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 if development:
-    DATABASES = {
+    DATABASES={
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
 else:
-    DATABASES = {
+    DATABASES={
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 
@@ -98,7 +98,7 @@ else:
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
+AUTH_PASSWORD_VALIDATORS=[
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
@@ -117,18 +117,18 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE='en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE='UTC'
 
-USE_I18N = True
+USE_I18N=True
 
-USE_L10N = True
+USE_L10N=True
 
-USE_TZ = True
+USE_TZ=True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL='/static/'
